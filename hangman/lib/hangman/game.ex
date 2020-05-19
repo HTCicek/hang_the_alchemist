@@ -28,7 +28,8 @@ defmodule Hangman.Game do
     %{
       game_state: game.game_state,
       turns_left: game.turns_left,
-      letters: game.letters |> reveal_guessed(game.used)
+      letters: game.letters |> reveal_guessed(game.used),
+      used: game.used
     }
   end
 
@@ -70,7 +71,7 @@ defmodule Hangman.Game do
   end
 
   defp reveal_letter(letter, _in_word = true), do: letter
-  defp reveal_letter(letter, _not_in_word), do: "__"
+  defp reveal_letter(_letter, _not_in_word), do: "_"
 
   defp maybe_won(true), do: :won
   defp maybe_won(_), do: :good_guess
